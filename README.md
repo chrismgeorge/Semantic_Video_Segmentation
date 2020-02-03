@@ -15,8 +15,8 @@ A series of artistic uses of semantic video segmentation.
     * Move the content of the semantic-segmentation-helpers into the top-level directory
     * Create a videos folder, and move all of the videos you to use into said folder.
     * Run video_2_jpg.py to turn all of the videos into a series of jpgs.
-        * The images will be stored in a newly created folder called ./images/video_name/0000X.jpg
-        * It will also automatically create an output folder for all of the inference time outputs of the model ./images_segmented/video_name/
+        * The images will be stored in a newly created folder called ./videos/video_name/0000X.jpg
+        * It will also automatically create an output folder for all of the inference time outputs of the model ./videos/video_name_segmented/
     * In the demo_folder.py file:
         * on line 71 add colorized.convert('RGB')...
     * Apex install fix
@@ -38,3 +38,4 @@ A series of artistic uses of semantic video segmentation.
                 * scp -i exp_machine.pem ./Semantic_Video_Segmentation/setup.sh ubuntu@instance:~/
         * Witin the EC2 instance:
             * sh setup.sh
+                * This will automatially run the video_2_jpg file and turn all of the videos into jpgs existing within the videos/video_name/ folder.

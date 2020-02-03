@@ -27,6 +27,8 @@ def main():
             video_name = video
             new_folder = './videos/' + video[:-4] + '/'
             checkDirectory(new_folder)
+            new_folder_segmented = './videos/' + video[:-4] + '_segmented/'
+            checkDirectory(new_folder_segmented)
 
             # Iterate and retrieve the frames
             i = 0
