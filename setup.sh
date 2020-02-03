@@ -1,4 +1,5 @@
 git clone --recursive https://github.com/NVIDIA/semantic-segmentation.git
+git clone https://github.com/chrismgeorge/Semantic_Video_Segmentation
 cd semantic-segmentation
 mkdir ./pretrained_model/
 pip install gdown
