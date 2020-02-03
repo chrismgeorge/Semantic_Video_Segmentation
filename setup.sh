@@ -1,6 +1,7 @@
 git clone --recursive https://github.com/NVIDIA/semantic-segmentation.git
 git clone https://github.com/chrismgeorge/Semantic_Video_Segmentation
 mv ./Semantic_Video_Segmentation/semantic-segmentation-helpers/video_2_jpg.py ./semantic-segmentation/
+mv ./Semantic_Video_Segmentation/semantic-segmentation-helpers/jpg_2_video.py ./semantic-segmentation/
 rm ./semantic-segmentation/demo_folder.py
 mv ./Semantic_Video_Segmentation/semantic-segmentation-helpers/demo_folder.py ./semantic-segmentation/
 mv ./videos/ ./semantic-segmentation/
