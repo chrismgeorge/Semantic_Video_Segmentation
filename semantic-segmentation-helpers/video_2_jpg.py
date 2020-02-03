@@ -25,7 +25,7 @@ def main():
 
             # Get/ make new folder name
             video_name = video
-            new_folder = './images/' + video[:-4] + '/'
+            new_folder = './videos/' + video[:-4] + '/'
             checkDirectory(new_folder)
 
             # Iterate and retrieve the frames
