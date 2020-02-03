@@ -28,11 +28,13 @@ A series of artistic uses of semantic video segmentation.
         * If they are being converted at a later time, we will still need the original image for it's FPS.
         * If we would just like to create the videos within the instance, we can run the jpg_2_video.py
 * Scripting
-    * Updating the semantic-segmentation
-        * git submodule update --init --recursive
     * In an effort to efficiently perform this task, there are a few scripts that I wrote that can increase the speed at which things are done.
     * Steps:
         * Create an AWS EC2 instance using the ubuntu Deep Learning AMI
-        * ssh -i exp_machine.pem -L 8000:localhost:8888 ubuntu@instance
-        * scp -i exp_machine.pem ./Semantic_Video_Segmentation/setup.sh ubuntu@instance:~/
-        * sh setup.sh
+        * SSH into the instance:
+            * ssh -i exp_machine.pem -L 8000:localhost:8888 ubuntu@instance
+        * Update the instance name within the local_setup.sh file, then run:
+            * sh local_setup.sh
+                * scp -i exp_machine.pem ./Semantic_Video_Segmentation/setup.sh ubuntu@instance:~/
+        * Witin the EC2 instance:
+            * sh setup.sh
