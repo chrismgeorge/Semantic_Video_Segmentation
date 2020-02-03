@@ -31,3 +31,8 @@ A series of artistic uses of semantic video segmentation.
     * Updating the semantic-segmentation
         * git submodule update --init --recursive
     * In an effort to efficiently perform this task, there are a few scripts that I wrote that can increase the speed at which things are done.
+    * Steps:
+        * Create an AWS EC2 instance using the ubuntu Deep Learning AMI
+        * ssh -i exp_machine.pem -L 8000:localhost:8888 ubuntu@instance
+        * scp -i exp_machine.pem ./Semantic_Video_Segmentation/setup.sh ubuntu@instance:~/
+        * sh setup.sh
