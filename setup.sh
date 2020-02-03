@@ -6,9 +6,17 @@ mv ./Semantic_Video_Segmentation/semantic-segmentation-helpers/demo_folder.py ./
 mv ./videos/ ./semantic-segmentation/
 cd semantic-segmentation
 pip install gdown
-mkdir ./pretrained_model/
-cd pretrained_model/
+mkdir ./pretrained_models/
+cd pretrained_models/
 gdown https://drive.google.com/uc?id=1P4kPaMY-SmQ3yPJQTJ7xMGAB_Su-1zTl
 cd ..
 pip install opencv-python
 python3 video_2_jpg.py
+source activate pytorch_p36
+pip install opencv-python
+pip uninstall apex
+cd ..
+git clone https://www.github.com/nvidia/apex
+cd apex
+python setup.py install
+cd ../semantic-segmentation/

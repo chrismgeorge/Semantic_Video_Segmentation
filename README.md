@@ -35,7 +35,9 @@ A series of artistic uses of semantic video segmentation.
             * ssh -i exp_machine.pem -L 8000:localhost:8888 ubuntu@instance
         * Update the instance name within the local_setup.sh file, then run:
             * sh local_setup.sh
-                * scp -i exp_machine.pem ./Semantic_Video_Segmentation/setup.sh ubuntu@instance:~/
-        * Witin the EC2 instance:
+        * Within the EC2 instance:
             * sh setup.sh
                 * This will automatially run the video_2_jpg file and turn all of the videos into jpgs existing within the videos/video_name/ folder.
+                * Also automatically fixes the apex issue.
+        * Run the inference command for each video.
+            * CUDA_VISIBLE_DEVICES=0 python demo_folder.py --demo-folder YOUR_FOLDER --snapshot ./pretrained_models/cityscapes_best.pth --save-dir YOUR_SAVE_DIR
