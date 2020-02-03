@@ -29,6 +29,7 @@ def main():
             checkDirectory(new_folder)
 
             # Iterate and retrieve the frames
+            i = 0
             while(True):
                 # Capture frame-by-frame
                 ret, frame = cap.read()
@@ -36,6 +37,7 @@ def main():
                     break
                 name = new_folder + '{num:0{width}}'.format(num=i, width=6) + '.jpg'
                 cv2.imwrite(name, frame)
+                i += 1
 
     # Cleanup
     cap.release()

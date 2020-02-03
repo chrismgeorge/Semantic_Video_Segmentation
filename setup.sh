@@ -10,4 +10,5 @@ mkdir ./pretrained_model/
 cd pretrained_model/
 gdown https://drive.google.com/uc?id=1P4kPaMY-SmQ3yPJQTJ7xMGAB_Su-1zTl
 cd ..
+pip install opencv-python
 python3 video_2_jpg.py
