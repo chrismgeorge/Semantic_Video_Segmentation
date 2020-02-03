@@ -28,4 +28,6 @@ A series of artistic uses of semantic video segmentation.
         * If they are being converted at a later time, we will still need the original image for it's FPS.
         * If we would just like to create the videos within the instance, we can run the jpg_2_video.py
 * Scripting
+    * Updating the semantic-segmentation
+        * git submodule update --init --recursive
     * In an effort to efficiently perform this task, there are a few scripts that I wrote that can increase the speed at which things are done.
