@@ -13,7 +13,6 @@ gdown https://drive.google.com/uc?id=1P4kPaMY-SmQ3yPJQTJ7xMGAB_Su-1zTl
 cd ..
 pip install opencv-python
 python3 video_2_jpg.py
-source activate pytorch_p36
 pip install opencv-python
 pip uninstall apex
 cd ..
