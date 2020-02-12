@@ -57,6 +57,10 @@ color_dict = {
     'bicycle': [119, 11, 32]
 }
 
+r1, r2, r3 = color_dict['person']
+white = [255, 255, 255]
+black = [0, 0, 0]
+
 # get data
 data_dir = args.demo_folder
 images = os.listdir(data_dir)
@@ -86,9 +90,34 @@ for img_id, img_name in enumerate(images):
     pred = np.argmax(pred, axis=0)
 
     # Save colorized results
-    color_name = 'color_mask/' + img_name
     colorized = args.dataset_cls.colorize_mask(pred)
+
+    pdb.set_trace()
+
+    # Save 1 for regular color mask
+    color_name = 'color_mask_1/' + img_name
     colorized.convert('RGB').save(os.path.join(args.save_dir, color_name))
+
+    # Save 1.5, black and white color mask
+    # Get rgb data
+    red, green, blue = colorized[:,:,0], colorized[:,:,1], colorized[:,:,2]
+
+    # Get masks
+    mask = (red == r1) & (green == g1) & (blue == b1) # person
+    not_mask = (red != r1) & (green != g1) & (blue != b1) # background
+
+    # Apply massk
+    data[:,:,:][mask] = white
+    data[:,:,:][not_mask] = black
+
+    color_name = 'color_mask_bw/' + img_name
+    data.convert('RGB').save(os.path.join(args.save_dir, color_name))
+
+    # Save 2 for person transparency
+
+    # Save 3 for background transparency
+
+    pdb.set_trace() # check images
 
 end_time = time.time()
 

@@ -7,7 +7,7 @@ A series of artistic uses of semantic video segmentation.
     * SSH into the instance:
         * ssh -i exp_machine.pem -L 8000:localhost:8888 ubuntu@instance
     * Update the instance name within the local_setup.sh file, then run:
-        * sh local_setup.sh
+        * sh local.sh
     * Within the EC2 instance:
         * sh setup.sh
             * This will automatially run the video_2_jpg file and turn all of the videos into jpgs existing within the videos/video_name/ folder.

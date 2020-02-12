@@ -25,12 +25,14 @@ def main():
 
             # Get/ make new folder name
             video_name = video
-            new_folder = './videos/' + video[:-4] + '/'
+            new_folder = './videos/' + video[:-4] + '_color_mask_bw/'
             checkDirectory(new_folder)
-            new_folder_segmented = './videos/' + video[:-4] + '_segmented/'
+
+            # Create directory for segmented images
+            new_folder_segmented = './videos/' + video[:-4] + '_transparent_person/'
             checkDirectory(new_folder_segmented)
 
-            new_folder_segmented = './videos/' + video[:-4] + '_segmented/' + 'color_mask/'
+            new_folder_segmented = './videos/' + video[:-4] + '_transparent_background/'
             checkDirectory(new_folder_segmented)
 
             # Iterate and retrieve the frames
