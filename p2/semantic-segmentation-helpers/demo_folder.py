@@ -74,7 +74,8 @@ mean_std = ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 img_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize(*mean_std)])
 if not os.path.exists(args.save_dir):
     os.makedirs(args.save_dir)
-
+isTesting = True
+i = 0
 start_time = time.time()
 for img_id, img_name in enumerate(images):
     img_dir = os.path.join(data_dir, img_name)
@@ -132,12 +133,42 @@ for img_id, img_name in enumerate(images):
     save_4 = base_dir + '_transparent_background/' + alpha_name
     cv2.imwrite(save_4, img_RGBA)
 
-    pdb.set_trace() # check images
+    i += 1
+    if isTesting == True and i >= 30:
+        break
 
 end_time = time.time()
 
 print('Results saved.')
 print('Inference takes %4.2f seconds, which is %4.2f seconds per image, including saving results.' % (end_time - start_time, (end_time - start_time)/len(images)))
+
+def sort_images(image_list):
+    return sorted(image_list)
+
+def jpg_2_video(og_video_path, new_video_name, image_dir):
+    cap = cv2.VideoCapture(og_video_path)
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    cap.release()
+
+    # Initialize new video
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    video = cv2.VideoWriter(new_video_name, fourcc, fps, (w, h))
+    pdb
+    # Get images
+    image_list = os.listdir(image_dir)
+    images = sort_images(image_list)
+
+    for image_name in images:
+        if ('.png' in image_name or '.jpg' in image_name):
+            cur_image_path = image_dir + image_name
+            data = cv2.imread(cur_image_path, cv2.IMREAD_UNCHANGED)
+            video.write(data)
+            print(image_name)
+
+jpg_2_video('./videos/trimmed.mp4', './videos/trimmed_background_transparency.avi', './videos/trimmed_transparent_background/')
+
 
 
 
