@@ -12,6 +12,7 @@ A series of artistic uses of semantic video segmentation.
         * source activate pytorch_p36
         * sh setup.sh
     * Run the inference command for each video.
-        * CUDA_VISIBLE_DEVICES=0 python demo_folder.py --demo-folder YOUR_FOLDER --snapshot ./pretrained_models/cityscapes_best.pth --save-dir YOUR_SAVE_DIR
+        * cd semantic-segmentation
+        * CUDA_VISIBLE_DEVICES=0 python demo_folder.py --demo-folder YOUR_FOLDER --snapshot ./pretrained_models/cityscapes_best.pth --save-dir YOUR_FOLDER
     * Download the video!
         * scp -i exp_machine.pem ubuntu@instance:~/filePathRemote ./

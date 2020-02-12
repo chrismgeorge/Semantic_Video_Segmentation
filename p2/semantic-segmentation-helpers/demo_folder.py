@@ -57,7 +57,7 @@ color_dict = {
     'bicycle': [119, 11, 32]
 }
 
-r1, r2, r3 = color_dict['person']
+r1, g1, b1 = color_dict['person']
 white = [255, 255, 255]
 black = [0, 0, 0]
 
@@ -89,16 +89,19 @@ for img_id, img_name in enumerate(images):
     pred = pred.cpu().numpy().squeeze()
     pred = np.argmax(pred, axis=0)
 
-    # Save colorized results
+    ### Save colorized results #################################
     colorized = args.dataset_cls.colorize_mask(pred)
+    colorized = colorized.convert('RGB')
+    base_dir = args.save_dir.split('_')[0]
 
-    pdb.set_trace()
+    ### Save 1 for regular color mask
+    save_1 = base_dir + '_color_mask/' + img_name
+    colorized.save(save_1)
 
-    # Save 1 for regular color mask
-    color_name = 'color_mask_1/' + img_name
-    colorized.convert('RGB').save(os.path.join(args.save_dir, color_name))
+    ### Save 2, black and white color mask #################################
+    colorized = np.array(colorized)
+    data = np.zeros(colorized.shape)
 
-    # Save 1.5, black and white color mask
     # Get rgb data
     red, green, blue = colorized[:,:,0], colorized[:,:,1], colorized[:,:,2]
 
@@ -110,12 +113,24 @@ for img_id, img_name in enumerate(images):
     data[:,:,:][mask] = white
     data[:,:,:][not_mask] = black
 
-    color_name = 'color_mask_bw/' + img_name
-    data.convert('RGB').save(os.path.join(args.save_dir, color_name))
+    save_2 = base_dir + '_color_mask_bw/' + img_name
+    cv2.imwrite(save_2, data)
 
-    # Save 2 for person transparency
+    ### Save 3 for person transparency #################################
+    red, green, blue = data[:,:,0], data[:,:,1], data[:,:,2]
+    alpha = (mask * 255).astype(blue.dtype)
+    img_RGBA = cv2.merge((red, green, blue, alpha))
+    alpha_name = img_name.split('.')[0] + '.png'
+    save_3 = base_dir + '_transparent_person/' + alpha_name
+    cv2.imwrite(save_3, img_RGBA)
 
-    # Save 3 for background transparency
+    ### Save 4 for background transparency #################################
+    red, green, blue = data[:,:,0], data[:,:,1], data[:,:,2]
+    alpha = (not_mask * 255).astype(blue.dtype)
+    img_RGBA = cv2.merge((red, green, blue, alpha))
+    alpha_name = img_name.split('.')[0] + '.png'
+    save_4 = base_dir + '_transparent_background/' + alpha_name
+    cv2.imwrite(save_4, img_RGBA)
 
     pdb.set_trace() # check images
 
