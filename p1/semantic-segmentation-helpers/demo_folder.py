@@ -62,9 +62,9 @@ for img_id, img_name in enumerate(images):
     pred = pred.cpu().numpy().squeeze()
     pred = np.argmax(pred, axis=0)
 
-    color_name = 'color_mask_' + img_name
-    overlap_name = 'overlap_' + img_name
-    pred_name = 'pred_mask_' + img_name
+    color_name = 'color_mask/' + img_name
+    overlap_name = 'overlap/' + img_name
+    pred_name = 'pred_mask/' + img_name
 
     # save colorized predictions
     colorized = args.dataset_cls.colorize_mask(pred)

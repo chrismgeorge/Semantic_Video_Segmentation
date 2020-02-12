@@ -5,9 +5,9 @@ from PIL import Image
 import cv2
 import pdb
 
+# Filter out everything not color_mask and order them
 def sort_images(image_list):
-    # TODO
-    pass
+    return sorted([x for x in image_list if 'color' in x])
 
 # video_name: doesn't include .mp4
 def jpg_2_video(video_name):
@@ -24,15 +24,16 @@ def jpg_2_video(video_name):
     # Initialize new video
     fourcc = cv2.VideoWriter_fourcc(*'MP4V')
     new_video_name = og_video_dir + video_name + '_segmented.mp4'
-    video = cv2.VideoWriter(video_name, fourcc, fps, (image_size, image_size))
+    video = cv2.VideoWriter(new_video_name, fourcc, fps, (w, h))
 
     # Get images
-    image_path = og_video_dir + video + '_segmented/'
+    image_path = og_video_dir + video_name + '_segmented/' + 'color_mask/'
     image_list = os.listdir(image_path)
-    images = sort_images(image_list) # TODO
+    images = sort_images(image_list)
 
-    for image_path in enumerate(images):
-        video.write(cv2.imread(image_path))
+    for image_name in enumerate(images):
+        cur_image_path = image_path + image_name[1]
+        video.write(cv2.imread(cur_image_path))
 
     cv2.destroyAllWindows()
     video.release()
