@@ -5,7 +5,6 @@ from PIL import Image
 import cv2
 import pdb
 
-# https://stackoverflow.com/questions/6553399/how-can-i-convert-every-pixel-that-is-not-black-to-a-certain-color
 
 # Filter out everything not color_mask and order them
 def sort_images(image_list):
@@ -62,9 +61,4 @@ def jpg_2_video():
 
 
 jpg_2_video()
-# if __name__ == "__main__":
-#     if (len(sys.argv) != 2):
-#         print('Wrong number of args: python jpg_2_video.py test')
-#     else:
-#         # execute only if run as a script
-#         main(sys.argv[-1])
+

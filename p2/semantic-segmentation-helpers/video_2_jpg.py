@@ -32,10 +32,6 @@ def main():
 
             new_folder_segmented = './videos/' + video[:-4] + '_segmented/' + 'color_mask/'
             checkDirectory(new_folder_segmented)
-            new_folder_segmented = './videos/' + video[:-4] + '_segmented/' + 'overlap/'
-            checkDirectory(new_folder_segmented)
-            new_folder_segmented = './videos/' + video[:-4] + '_segmented/' + 'pred_mask/'
-            checkDirectory(new_folder_segmented)
 
             # Iterate and retrieve the frames
             i = 0

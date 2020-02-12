@@ -5,6 +5,7 @@ import argparse
 from PIL import Image
 import numpy as np
 import cv2
+import pdb
 
 import torch
 from torch.backends import cudnn
@@ -34,6 +35,28 @@ net, _ = restore_snapshot(net, optimizer=None, snapshot=args.snapshot, restore_o
 net.eval()
 print('Net restored.')
 
+color_dict = {
+    'road': [128, 64, 128],
+    'sidewalk': [244, 35, 232],
+    'building': [70, 70, 70],
+    'wall': [102, 102, 156],
+    'fence': [190, 153, 153],
+    'pole': [153, 153, 153],
+    'traffic light': [250, 170, 30],
+    'traffic sign': [220, 220, 0],
+    'vegetation': [107, 142, 35],
+    'terrain': [152, 251, 152],
+    'sky': [70, 130, 180],
+    'person': [220, 20, 60],
+    'rider': [255, 0, 0],
+    'car': [0, 0, 142],
+    'truck': [0, 0, 70],
+    'bus': [0, 60, 100],
+    'train': [0, 80, 100],
+    'motorcycle': [0, 0, 230],
+    'bicycle': [119, 11, 32]
+}
+
 # get data
 data_dir = args.demo_folder
 images = os.listdir(data_dir)
@@ -62,24 +85,15 @@ for img_id, img_name in enumerate(images):
     pred = pred.cpu().numpy().squeeze()
     pred = np.argmax(pred, axis=0)
 
+    # Save colorized results
     color_name = 'color_mask/' + img_name
-    overlap_name = 'overlap/' + img_name
-    pred_name = 'pred_mask/' + img_name
-
-    # save colorized predictions
     colorized = args.dataset_cls.colorize_mask(pred)
     colorized.convert('RGB').save(os.path.join(args.save_dir, color_name))
 
-    # save colorized predictions overlapped on original images
-    overlap = cv2.addWeighted(np.array(img), 0.5, np.array(colorized.convert('RGB')), 0.5, 0)
-    cv2.imwrite(os.path.join(args.save_dir, overlap_name), overlap[:, :, ::-1])
-
-    # save label-based predictions, e.g. for submission purpose
-    label_out = np.zeros_like(pred)
-    for label_id, train_id in args.dataset_cls.id_to_trainid.items():
-        label_out[np.where(pred == train_id)] = label_id
-        cv2.imwrite(os.path.join(args.save_dir, pred_name), label_out)
 end_time = time.time()
 
 print('Results saved.')
 print('Inference takes %4.2f seconds, which is %4.2f seconds per image, including saving results.' % (end_time - start_time, (end_time - start_time)/len(images)))
+
+
+
