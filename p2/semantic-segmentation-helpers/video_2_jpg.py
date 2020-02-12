@@ -25,8 +25,15 @@ def main():
 
             # Get/ make new folder name
             video_name = video
-            new_folder = './videos/' + video[:-4] + '_color_mask_bw/'
+            new_folder = './videos/' + video[:-4] + '_images/'
             checkDirectory(new_folder)
+
+            # Create directory for segmented images
+            new_folder_segmented = './videos/' + video[:-4] + '_color_mask/'
+            checkDirectory(new_folder_segmented)
+
+            new_folder_segmented = './videos/' + video[:-4] + '_color_mask_bw/'
+            checkDirectory(new_folder_segmented)
 
             # Create directory for segmented images
             new_folder_segmented = './videos/' + video[:-4] + '_transparent_person/'
@@ -45,6 +52,8 @@ def main():
                 name = new_folder + '{num:0{width}}'.format(num=i, width=6) + '.jpg'
                 cv2.imwrite(name, frame)
                 i += 1
+                if i % 100 == 0:
+                    print(i, '/', frame_count)
 
     # Cleanup
     cap.release()
