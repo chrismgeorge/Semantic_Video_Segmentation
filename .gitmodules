@@ -1,3 +1,0 @@
-[submodule "semantic-segmentation"]
-	path = semantic-segmentation
-	url = https://github.com/NVIDIA/semantic-segmentation
