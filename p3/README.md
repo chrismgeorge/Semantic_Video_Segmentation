@@ -22,7 +22,8 @@ sh setup.sh
 ```
 cd semantic-segmentation
 ```
-```CUDA_VISIBLE_DEVICES=0 python demo_folder.py --demo-folder YOUR_FOLDER --snapshot ./pretrained_models/cityscapes_best.pth --save-dir YOUR_FOLDER
+```
+CUDA_VISIBLE_DEVICES=0 python demo_folder.py --demo-folder YOUR_FOLDER --snapshot ./pretrained_models/cityscapes_best.pth --save-dir YOUR_FOLDER
 ```
 6. Download the video or image sequence!
 ```
