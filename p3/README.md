@@ -1,7 +1,7 @@
 # Semantic_Video_Segmentation
-Prototype 2 for Semantic Video Segmentation.
+Prototype 3 for Semantic Video Segmentation.
 
-## semantic-segmentation
+## Instructions
 1. Create an AWS EC2 instance using the ubuntu Deep Learning AMI
 2. SSH into the instance:
 ```
