@@ -110,7 +110,7 @@ def main(args):
         pred = np.argmax(pred, axis=0)
 
         ### Save colorized results #################################
-        colorized = dataset_cls.colorize_mask(pred)
+        colorized = args.dataset_cls.colorize_mask(pred)
         colorized = colorized.convert('RGB')
         base_dir = args.save_dir.split('_')[0]
 

@@ -7,7 +7,7 @@ Prototype 3 for Semantic Video Segmentation.
 ```
 ssh -i exp_machine.pem -L 8000:localhost:8888 ubuntu@instance
 ```
-3. Update the instance name within the local_setup.sh file, then run:
+3. Update the instance name within local.sh, then run:
 ```
 sh local.sh
 ```
