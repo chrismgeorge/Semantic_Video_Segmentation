@@ -39,29 +39,6 @@ COLOR_DICT = {
         'bicycle': [119, 11, 32]
     }
 
-# Doesn't make videos from pngs yetß
-# def jpg_2_video(og_video_path, new_video_name, image_dir):
-#     cap = cv2.VideoCapture(og_video_path)
-#     fps = cap.get(cv2.CAP_PROP_FPS)
-#     h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-#     w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-#     cap.release()
-
-#     # Initialize new video,
-#     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-#     video = cv2.VideoWriter(new_video_name, fourcc, fps, (w, h))
-
-#     # Get images
-#     image_list = os.listdir(image_dir)
-#     image_list.sort()
-
-#     for image_name in images:
-#         if ('.png' in image_name or '.jpg' in image_name):
-#             cur_image_path = image_dir + image_name
-#             data = cv2.imread(cur_image_path, cv2.IMREAD_UNCHANGED)
-#             video.write(data)
-#             print(image_name)
-
 def main(args):
     # Get and build net
     args.dataset_cls = cityscapes
@@ -157,8 +134,6 @@ def main(args):
     print('Results saved.')
     print('Total Inference time %4.2f seconds,' % (end_time - start_time))
     print('which is %4.2f seconds per image.' % ((end_time - start_time)/len(images)))
-
-    # jpg_2_video('')
 
 
 if __name__ == "__main__":
