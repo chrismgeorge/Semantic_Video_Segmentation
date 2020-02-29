@@ -13,6 +13,9 @@ sh local.sh
 ```
 4. Within the EC2 instance:
 ```
+tmux new -s sess
+```
+```
 source activate pytorch_p36
 ```
 ```
